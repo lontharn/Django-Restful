@@ -26,6 +26,8 @@ SECRET_KEY = '(ngdqp9j8qz$i1*y=g4z^py57__2l6*865l(5@&h%*u=nwf#hs'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
     '139.162.33.20',
 ]
 
@@ -82,8 +84,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'gamesapi',
-        'USER': 'lontharn',
-        'PASSWORD': 'lontharn',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
     }
 }
 

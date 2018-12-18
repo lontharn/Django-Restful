@@ -1,5 +1,6 @@
-from rest_framework import serializers
+from django.contrib.auth.models import User
 
+from rest_framework import serializers
 
 from .models import *
 import games.views
@@ -15,10 +16,12 @@ class GameCategorySerializer(serializers.HyperlinkedModelSerializer):
 
 class GameSerializer(serializers.HyperlinkedModelSerializer):
     game_category = serializers.SlugRelatedField(queryset=GameCategory.objects.all(), slug_field='name')
+    owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = Game
-        fields = ('url', 'game_category', 'name', 'release_date', 'played')
+        dept = 4
+        fields = ('url', 'owner', 'game_category', 'name', 'release_date', 'played')
 
 
 class ScoreSerializer(serializers.HyperlinkedModelSerializer):
@@ -46,3 +49,18 @@ class PlayerScoreSerializer(serializers.ModelSerializer):
     class Meta:
         model = PlayScore
         fields = ('url', 'pk', 'score', 'score_date', 'player', 'game',)
+
+
+class UserGameSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Game
+        fields = ('url', 'name')
+
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    games = UserGameSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = User
+        fields = ('url', 'pk', 'username', 'games')

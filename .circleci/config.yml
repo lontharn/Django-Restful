@@ -4,6 +4,10 @@ jobs:
     docker:
       - image: circleci/python:3.6
       - image: circleci/postgres:10.5
+        environtment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: gamesapi
 
     working_directory: ~/repo
 

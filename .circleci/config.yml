@@ -38,7 +38,7 @@ jobs:
           name: Deploy to www.lontharn.site
           working_directory: ~/repo
           command: |
-            ssh $SSH_USER@$SSH_HOST "$DEPLOT_COMMAND"
+            ssh $SSH_USER@$SSH_HOST "$DEPLOY_COMMAND"
 
 workflows:
   version: 2

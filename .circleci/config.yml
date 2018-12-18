@@ -27,3 +27,26 @@ jobs:
           command: |
             . venv/bin/activate
             python gamesapi/manage.py migrate
+  deploy_lontharn:
+    machine:
+      enable: true
+    steps:
+      - run:
+          name: Deploy to www.lontharn.site
+          working_directory: ~/repo
+          command: |
+            ssh $SSH_USER@$SSH_HOST
+            cd /home/Django-Restful/gamesapi/
+            python manage.py migrate
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy_lontharn:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master

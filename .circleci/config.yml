@@ -9,6 +9,8 @@ jobs:
 
     steps:
       - checkout
+      - restore_cache:
+          key: restful-{{ checksum "requirements.txt" }}
       - run:
           name: install depedencies
           command: |
@@ -19,4 +21,5 @@ jobs:
       - run:
           name: migrate db
           command: |
+            . venv/bin/activate
             python gamesapi/manage.py migrate

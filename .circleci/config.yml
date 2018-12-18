@@ -32,8 +32,8 @@ jobs:
       enable: true
     steps:
       - add_ssh_keys:
-          - fringerprints:
-              - "20:28:c8:cb:92:c9:92:21:51:20:69:ec:de:4a:fd:55"
+          fringerprints:
+            - "20:28:c8:cb:92:c9:92:21:51:20:69:ec:de:4a:fd:55"
       - run:
           name: Deploy to www.lontharn.site
           working_directory: ~/repo

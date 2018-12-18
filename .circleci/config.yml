@@ -19,4 +19,4 @@ jobs:
       - run:
           name: migrate db
           command: |
-            python manage.py migrate
+            python gamesapi/manage.py migrate

@@ -31,12 +31,16 @@ jobs:
     machine:
       enable: true
     steps:
+      - add_ssh_keys:
+          - fringerprints:
+              - "20:28:c8:cb:92:c9:92:21:51:20:69:ec:de:4a:fd:55"
       - run:
           name: Deploy to www.lontharn.site
           working_directory: ~/repo
           command: |
             ssh $SSH_USER@$SSH_HOST
             cd /home/Django-Restful/gamesapi/
+            git pull
             python manage.py migrate
 workflows:
   version: 2
